@@ -1,0 +1,11 @@
+{% extends "layouts/base.html" %}
+{% block title %}Внутренняя ошибка сервера{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center h-100">
+    <section class="section container w-50 mt-auto py-2 mb-auto shadow-sm bg-white rounded">
+        <h1 class="section-title text-center mb-3">Внутренняя ошибка сервера. Код 500.</h1>
+        <a class="btn btn-success w-100" href="{{ url_for('home.index') }}">Вернуться на главную</a>
+    </section>
+</div>
+{% endblock %}

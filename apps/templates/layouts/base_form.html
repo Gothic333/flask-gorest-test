@@ -1,0 +1,13 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="container w-50">
+    <form action="" method="post" class="form" role="form">
+        {% if 'csrf_token' in form %}
+        {{ form.csrf_token() }}
+        {% endif %}
+        {% block form_body %} {% endblock %}
+    </form>
+    <a class="btn btn-primary w-100" href="{{url_for(request.path.split('/')[1]+'.index')}}" role="button">Отменить</a>
+</div>
+{% endblock %}

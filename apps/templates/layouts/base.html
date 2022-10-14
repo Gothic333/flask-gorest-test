@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>{% block title %}Базовая страница{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="{{url_for('static', filename='img/favicon.ico')}}"/>
+    {% block styles %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap/bootstrap.min.css')}}">
+    {% endblock %}
+</head>
+<body>
+
+<div class="d-flex flex-column h-100">
+    <header>
+        <h1 class="text-center my-4">
+            {% block header %}
+            {% endblock %}
+        </h1>
+    </header>
+    <main class="container-fluid">
+        {% block content %}
+            no content
+        {% endblock %}
+    </main>
+    {% block footer %}
+    <footer class="navbar bg-light">
+        <div class="col p-2 d-none d-sm-block"></div>
+        <div class="col p-2 text-center">© GOREST TEST 2022 Naumenko VI</div>
+        <div class="col p-2 text-end">Github: <a href="https://github.com/Gothic333">https://github.com/Gothic333</a></div>
+    </footer>
+    {% endblock %}
+</div>
+
+{% block scripts %}
+    <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap/bootstrap.bundle.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/jquery/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
+{% endblock %}
+</body>
+</html>
