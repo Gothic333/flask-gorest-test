@@ -39,13 +39,13 @@ class UserService:
     @classmethod
     def add_user(cls, user):
         user_json = cls.to_json(user)
-        response = requests.post(cls.url, headers=cls.headers, json=user_json)
+        response = requests.post(cls.url, headers=cls.headers, data=user_json)
         response.raise_for_status()
 
     @classmethod
     def update_user(cls, user):
         user_json = cls.to_json(user)
-        response = requests.put(f'{cls.url}/{user.user_id}', headers=cls.headers, json=user_json)
+        response = requests.patch(f'{cls.url}/{user.id}', headers=cls.headers, data=user_json)
         response.raise_for_status()
 
     @classmethod

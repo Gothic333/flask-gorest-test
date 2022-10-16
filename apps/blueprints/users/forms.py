@@ -12,7 +12,7 @@ class UsersForm(BaseForm):
                                  ('female', 'Женский')],
                         validators=[InputRequired()], coerce=str)
     status = SelectField('Статус',
-                         choices=[[('active', 'Активен'),
-                                   ('inactive', 'Неактивен')]],
+                         choices=[('active', 'Активен'),
+                                  ('inactive', 'Неактивен')],
                          validators=[InputRequired()], coerce=str)
     submit = SubmitField('Отправить')
