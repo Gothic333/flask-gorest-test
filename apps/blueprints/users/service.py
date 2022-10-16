@@ -59,7 +59,7 @@ class UserService:
         pages = 1
         try:
             response.raise_for_status()
-            pages = response.headers['X-Pagination-Pages']
+            pages = int(response.headers['X-Pagination-Pages'])
         except requests.HTTPError as e:
             pass
         finally:

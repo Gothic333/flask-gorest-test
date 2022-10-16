@@ -14,7 +14,7 @@ def index():
     if users_page is None:
         abort(404)
     page_count = UserService.get_page_count()
-    return render_template('users/index.html', users=users_page, page_count=page_count)
+    return render_template('users/index.html', users=users_page, current_page=page, page_count=page_count)
 
 
 @users.route('/<int:user_id>', methods=['GET'])
