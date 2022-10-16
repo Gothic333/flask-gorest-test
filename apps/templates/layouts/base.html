@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="h-100">
 <head>
     <title>{% block title %}Базовая страница{% endblock %}</title>
     <meta charset="UTF-8">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap/bootstrap.min.css')}}">
     {% endblock %}
 </head>
-<body>
+<body class="h-100">
 
 <div class="d-flex flex-column h-100">
     <header>
@@ -20,13 +20,13 @@
             {% endblock %}
         </h1>
     </header>
-    <main class="container-fluid">
+    <main class="container-fluid d-flex flex-column flex-shrink-0 flex-grow-1">
         {% block content %}
             no content
         {% endblock %}
     </main>
     {% block footer %}
-    <footer class="navbar bg-light">
+    <footer class="navbar bg-light flex-shrink-0 flex-grow-0">
         <div class="col p-2 d-none d-sm-block"></div>
         <div class="col p-2 text-center">© GOREST TEST 2022 Naumenko VI</div>
         <div class="col p-2 text-end">Github: <a href="https://github.com/Gothic333">https://github.com/Gothic333</a></div>

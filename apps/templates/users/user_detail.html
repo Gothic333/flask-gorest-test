@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layouts/base.html" %}
 
-</body>
-</html>
+{% block title %} Информация о пользователе {% endblock %}
+{% block header %} Пользователь: {{ user.name }} {% endblock %}
+
+{% block content %}
+<div class="container d-flex flex-column w-50 h-100">
+    <div class="row">
+        <div class="col d-flex justify-content-center flex-column">
+            <img class="rounded-circle mx-auto" width="200" height="200" src="https://via.placeholder.com/200x200?text=Photo" alt="Фото">
+            <h3 class="text-center mt-2 mb-0">{{ user.name }}</h3>
+            <div class="text-center">
+                <span class="badge text-bg-info"> {{ user.gender }}</span>
+                <span class="badge {% if user.status == 'active' %} text-bg-success {% else %} text-bg-warning {% endif %}"> {{ user.status }}</span>
+            </div>
+        </div>
+        <div class="col">
+            <p class="fw-bold mb-0">Адрес электронной почты:</p>
+            <a class="text-decoration-none" href="mailto:{{ user.email }}">{{ user.email }}</a>
+        </div>
+    </div>
+    <hr>
+    <div class="row mt-2 flex-shrink-0 flex-grow-1">
+        <div class="col">
+            <h5 class="fw-bold">Дополнительная информация</h5>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col">
+            <a href="{{url_for('users.update_user', user_id = user.id)}}" class="btn btn-warning d-block" role="button">Изменить</a>
+        </div>
+        <div class="col">
+            <a href="{{url_for('users.delete_user', user_id = user.id)}}" class="btn btn-danger d-block" role="button">Удалить</a>
+        </div>
+    </div>
+    <a class="btn btn-secondary w-100 mb-2" href="{{ url_for('users.index' )}}" role="button">Вернуться на главную</a>
+</div>
+{% endblock %}
