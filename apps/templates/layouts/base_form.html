@@ -1,8 +1,9 @@
 {% extends "layouts/base.html" %}
+{% from "macro/forms_macro.html" import render_label, render_field %}
 
 {% block content %}
 <div class="container w-50">
-    <form action="" method="POST" class="form" role="form">
+    <form action="" method="POST" class="form needs-validation" novalidate role="form">
         {% if 'csrf_token' in form %}
         {{ form.csrf_token() }}
         {% endif %}

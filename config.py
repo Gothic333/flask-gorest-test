@@ -3,6 +3,7 @@ import os
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY', 'SECRET_KEY_NOT_SET')
+    WTF_I18N_ENABLED = False
 
     @staticmethod
     def init_app(app):

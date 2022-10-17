@@ -1,0 +1,34 @@
+{% macro render_label(field) %}
+    {% if field.flags.required is none %}
+        {{ field.label }}
+    {% else %}
+        {{ field.label(required=field.flags.required) }}
+    {% endif %}
+{% endmacro %}
+
+
+{% macro render_field(field) %}
+{% set placeholder = kwargs.pop('placeholder','') %}
+{% set class_ = kwargs.pop('class_', '') %}
+{% set error_cls = '' %}
+
+    {% if field.errors %}
+    {% set error_cls = ' is-invalid' %}
+    {% endif %}
+
+    {% if field.type in ('RadioField', 'BooleanField') %}
+        {% for f in field %}
+            <div class="form-check form-check-inline ml-3 mt-2">
+                {{ f(class_='form-check-input'+error_cls) }}
+                {{ f.label(class_='form-check-label pl-1') }}
+            </div>
+        {% endfor %}
+    {% else %}
+        {{ field(class_=class_+error_cls, placeholder=placeholder, **kwargs) }}
+    {% endif %}
+    {% for e in field.errors %}
+        <div class="invalid-feedback d-block">
+            {{ e }}
+        </div>
+    {% endfor %}
+{% endmacro %}

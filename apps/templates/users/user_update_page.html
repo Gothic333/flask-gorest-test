@@ -5,32 +5,27 @@
 
 {% block form_body %}
     <div class="input-group mb-3">
-        <span class="input-group-text fst-italic">#</span>
+        <span class="fst-italic input-group-text">№</span>
         <div class="form-floating">
-            {{ form.id(class_='form-control', readonly=true) }}
-            {{ form.id.label }}
+            {{ render_field(form.id, class_='form-control', readonly=true) }}
+            {{ render_label(form.id) }}
         </div>
     </div>
     <div class="form-floating mb-3">
-        {{ form.name(class_='form-control') }}
-        {{ form.name.label }}
+        {{ render_field(form.name, class_='form-control', placeholder='Имя') }}
+        {{ render_label(form.name) }}
     </div>
     <div class="form-floating mb-3">
-        {{ form.email(class_='form-control') }}
-        {{ form.email.label }}
+        {{ render_field(form.email, class_='form-control', placeholder='Email') }}
+        {{ render_label(form.email) }}
     </div>
     <div class="mb-3">
-        <div>{{ form.gender.label }}:</div>
-        {% for f in form.gender %}
-            <div class="form-check-inline ml-3 mt-2">
-                {{ f(class_='form-check-input') }}
-                {{ f.label(class_='form-check-label pl-1') }}
-            </div>
-        {% endfor %}
+        <div>{{ render_label(form.gender) }}</div>
+        <div>{{ render_field(form.gender, class_='form-check-input') }}</div>
     </div>
     <div class="form-floating mb-3">
-        {{ form.status(class_='form-select') }}
-        {{ form.status.label }}
+        {{ render_field(form.status, class_='form-select') }}
+        {{ render_label(form.status) }}
     </div>
     <div class="mb-3">
         {{ form.submit(class_='btn btn-success w-100')}}

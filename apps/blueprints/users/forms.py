@@ -6,7 +6,7 @@ from apps.forms import BaseForm
 class UsersForm(BaseForm):
     id = IntegerField('ID пользователя', [Optional()])
     name = StringField('ФИО пользователя', [InputRequired(), Length(min=5, max=255)])
-    email = EmailField('Адрес электронной почты', [InputRequired(), Email(granular_message=True)])
+    email = EmailField('Адрес электронной почты', [InputRequired(), Email()])
     gender = RadioField('Пол',
                         choices=[('male', 'Мужской'),
                                  ('female', 'Женский')],
