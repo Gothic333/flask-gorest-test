@@ -1,7 +1,7 @@
 {% extends "layouts/base.html" %}
 
 {% block title %} Информация о пользователе {% endblock %}
-{% block header %} Пользователь: {{ user.name }} {% endblock %}
+{% block header %} Пользователь: {{ user.name }} <span class="text-secondary">[ID: {{ user.id }}]</span> {% endblock %}
 
 {% block content %}
 <div class="container d-flex flex-column w-50 h-100">
@@ -30,9 +30,12 @@
             <a href="{{url_for('users.update_user', user_id = user.id)}}" class="btn btn-warning d-block" role="button">Изменить</a>
         </div>
         <div class="col">
-            <a href="{{url_for('users.delete_user', user_id = user.id)}}" class="btn btn-danger d-block" role="button">Удалить</a>
+            <button class="btn btn-danger d-block w-100" role="button" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-user="{{ user.id }}" data-bs-url="{{ url_for('users.delete_user', user_id=user.id) }}">Удалить</button>
         </div>
     </div>
     <a class="btn btn-secondary w-100 mb-2" href="{{ url_for('users.index' )}}" role="button">Вернуться на главную</a>
 </div>
+
+{% include 'include/delete_modal.html' %}
+
 {% endblock %}
