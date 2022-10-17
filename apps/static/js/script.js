@@ -5,3 +5,10 @@ $('#deleteModal').on('show.bs.modal', function(event){
     $('#deleteModal .modal-user-id').text(user_id);
     $('#deleteModal .btn-delete').prop('href', url)
 });
+
+$(function() {
+    setTimeout(function() {
+        let alert = bootstrap.Alert.getOrCreateInstance('#alert');
+        alert.close();
+    }, 3000);
+});
