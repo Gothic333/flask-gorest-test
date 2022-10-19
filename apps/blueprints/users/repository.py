@@ -4,7 +4,7 @@ import requests
 from .models import User
 
 
-class UserService:
+class UserRepository:
     url = 'https://gorest.co.in/public/v2/users'
     access_token = 'Bearer ' + os.environ.get('ACCESS_TOKEN')
     headers = {'Content-Type': 'application/json',

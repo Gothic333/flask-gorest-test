@@ -1,0 +1,12 @@
+{% extends "layouts/base.html" %}
+{% block title %}{{ error.name }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center h-100">
+    <section class="container w-50 py-2 shadow-sm rounded">
+        <h1 class="text-center">{{ error.name }}. Код {{ error.code }}.</h1>
+        <div class="m-3"><span class="fw-bold">Описание:</span> {{ error.description }}</div>
+        <a class="btn btn-success w-100" href="{{ url_for('home.index') }}">Вернуться на главную</a>
+    </section>
+</div>
+{% endblock %}
