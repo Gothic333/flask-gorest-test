@@ -34,6 +34,10 @@
                 <button class="btn btn-danger btn-sm" role="button" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-user="{{ user.id }}" data-bs-url="{{ url_for('users.delete_user', user_id=user.id) }}">Удалить</button>
             </td>
         </tr>
+        {% else %}
+        <tr>
+            <td colspan="6" class="fw-bold">Ничего не найдено</td>
+        </tr>
         {% endfor %}
     </tbody>
 </table>
