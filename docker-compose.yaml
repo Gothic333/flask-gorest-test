@@ -1,0 +1,12 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flask-gorest
+    command: gunicorn --bind 0.0.0.0:8000 setup:app
+    restart: on-failure
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env
