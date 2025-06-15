@@ -1,8 +1,10 @@
 import json
 import os
+
 import requests
 from flask import flash
 from werkzeug.exceptions import NotFound
+
 from .models import User
 
 
@@ -11,7 +13,8 @@ class UserRepository:
     access_token = 'Bearer ' + os.environ.get('ACCESS_TOKEN')
     headers = {'Content-Type': 'application/json',
                'Accept': 'application/json',
-               'Authorization': access_token}
+               'Authorization': access_token
+               }
 
     @classmethod
     def get_all(cls, page_number):
@@ -20,7 +23,7 @@ class UserRepository:
         users = []
         try:
             response.raise_for_status()
-            users = [cls.from_json(user_json) for user_json in response.json()]
+            users = [cls.deserialize_user(user_json) for user_json in response.json()]
         except requests.HTTPError as e:
             flash(f'Ошибка: {e}', category='error')
         finally:
@@ -31,14 +34,14 @@ class UserRepository:
         response = requests.get(f'{cls.url}/{user_id}', headers=cls.headers)
         try:
             response.raise_for_status()
-            user = cls.from_json(response.json())
+            user = cls.deserialize_user(response.json())
             return user
         except requests.HTTPError:
             raise NotFound()
 
     @classmethod
     def add_user(cls, user):
-        user_json = cls.to_json(user)
+        user_json = cls.serialize_user(user)
         response = requests.post(cls.url, headers=cls.headers, data=user_json)
         try:
             response.raise_for_status()
@@ -48,7 +51,7 @@ class UserRepository:
 
     @classmethod
     def update_user(cls, user):
-        user_json = cls.to_json(user)
+        user_json = cls.serialize_user(user)
         response = requests.patch(f'{cls.url}/{user.id}', headers=cls.headers, data=user_json)
         try:
             response.raise_for_status()
@@ -72,12 +75,12 @@ class UserRepository:
         return pages
 
     @staticmethod
-    def to_json(user):
+    def serialize_user(user):
         data = {k: getattr(user, k, None) for k, v in user.__class__.__dict__.items() if isinstance(v, property)}
         return json.dumps(data)
 
     @staticmethod
-    def from_json(user_json):
+    def deserialize_user(user_json):
         user = User()
         _ = [setattr(user, k, v) for k, v in user_json.items() if hasattr(user, k)]
         return user

@@ -1,4 +1,5 @@
-from flask import render_template, Blueprint, url_for, redirect, request
+from flask import Blueprint, redirect, render_template, request, url_for
+
 from .forms import UsersForm
 from .models import User
 from .repository import UserRepository

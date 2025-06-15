@@ -1,6 +1,5 @@
 from flask import Blueprint, redirect, url_for
 
-
 home = Blueprint('home', __name__)
 
 

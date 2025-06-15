@@ -1,5 +1,7 @@
 import os
+
 from dotenv import load_dotenv
+
 from apps import create_app
 
 basedir = os.path.abspath(os.path.dirname(__file__))

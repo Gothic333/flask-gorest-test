@@ -1,5 +1,7 @@
-from wtforms import EmailField, StringField, IntegerField, RadioField, SelectField, SubmitField
-from wtforms.validators import InputRequired, Optional, Length, Email
+from wtforms import (EmailField, IntegerField, RadioField, SelectField,
+                     StringField, SubmitField)
+from wtforms.validators import Email, InputRequired, Length, Optional
+
 from apps.forms import BaseForm
 
 
